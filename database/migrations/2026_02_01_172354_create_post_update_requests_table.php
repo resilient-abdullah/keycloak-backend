@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('post_update_requests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->string('title')->nullable();
             $table->text('content')->nullable();
-            $table->string('status')->default('pending'); // pending | approved | rejected
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // pending | approved | rejected
             $table->string('requested_by'); // keycloak user sub
             $table->timestamps();
         });

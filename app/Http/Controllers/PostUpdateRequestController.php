@@ -31,7 +31,7 @@ class PostUpdateRequestController extends Controller
             'post_id' => $post->id,
             'title' => $data['title'] ?? null,
             'content' => $data['content'] ?? null,
-            'requested_by' => $request->get('keycloak_user')->sub,
+            'requested_by' => $request->get('keycloak_user')->name,
         ]);
 
         return response()->json($req, 201);
